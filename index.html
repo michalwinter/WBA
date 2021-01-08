@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title>Jak dělat seznamy v HTML</title>
+    <script>
+        function cssClick() {
+            var x = document.getElementById("css-icon")
+            var y = document.getElementById("sub-css")
+            var z = document.getElementById("css-a")
+            if (x.classList.contains("fa-chevron-down")) {
+                y.classList.remove("css-hidden")
+                x.classList.remove("fa-chevron-down")
+                x.classList.add("fa-chevron-up")
+                z.style.color = "#f1c40f"
+            } else {
+                y.classList.add("css-hidden")
+                x.classList.remove("fa-chevron-up")
+                x.classList.add("fa-chevron-down")
+                z.style['color'] = "#ecf0f1"
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+
+    <h1 class="nadpis">Jak dělat seznamy v HTML</h1>
+    <div class="main">
+        <div class="menu">
+            <ul>
+                <li><a href="#">Začátek</a></li>
+                <li onclick="cssClick()" id="css-a" style="cursor: pointer;"><span>CSS</span> <i id="css-icon"
+                        class="fas fa-chevron-down"></i>
+                </li>
+                <div id="sub-css" class="css-hidden">
+                    <li><a href="#type">Druh</a></li>
+                    <li><a href="#img">Obrázky</a></li>
+                    <li><a href="#position">Pozice</a></li>
+                    <li><a href="#css4">Jednoduše</a></li>
+                </div>
+                <li><a href="#example">Příklady</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="start-div">
+                <div>
+                    <h3>Bodové Seznamy</h3>
+                    <ul>
+                        <li>Sýr</li>
+                        <li>Máslo</li>
+                        <li>Chleba</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Řadové Seznamy</h3>
+                    <ol>
+                        <li>Sýr</li>
+                        <li>Máslo</li>
+                        <li>Chleba</li>
+                    </ol>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <p>V HTML máme dva druhy seznamů:</p>
+                <ul>
+                    <li>Bodové (unordered) seznamy - &lt;ul&gt;</li>
+                    <li>Číselné (ordered) seznamy - &lt;ol&gt;</li>
+                </ul>
+                <p style="margin-left: 10px;">Položky seznamu se v obou případech určují pomocí &lt;li&gt;</p>
+                <xmp><ul>
+    <li>Sýr</li>
+    <li>Máslo</li>
+    <li>Chleba</li>
+</ul>
+<ol>
+    <li>Sýr</li>
+    <li>Máslo</li>
+    <li>Chleba</li>
+</ol></xmp>
+                <hr>
+                
+                <p>CSS vlastnosti seznamů umožňují:</p>
+                <ul>
+                    <li>Nastavit různé značky položek seznamu pro bodové seznamy</li>
+                    <li>Nastavit různé značky položek seznamu pro řadové seznamy</li>
+                    <li>Nastavit obrázek jako značku položky seznamu</li>
+                    <li>Nastavit pozici značek seznamů</li>
+                </ul>
+            </div>
+            <hr>
+            <div id="type">
+                <h3>• Značky položek seznamu</h3>
+                <p>Vlastnost <span class="property">list-style-type</span> umožnuje změnit značení položek na velké množství různých symbolů.</p>
+                <p>Tady je pár možností:</p>
+                <xmp>ul {
+    list-style-type: square;
+}
+
+ol {
+    list-style-type: upper-roman;
+}</xmp> 
+                <iframe src="./type.html" frameborder="0" height="150"></iframe>
+            </div>
+            <hr>
+            <div id="img">
+                <h3>• Obrázek jako značka položky seznamu</h3>
+                <p>Vlastnost <span class="property">list-style-image</span> umožnuje nastavit značení položek jako obrázek.</p>
+                <xmp>ul {
+    list-style-image: url('chleba.png');
+}</xmp>
+                <iframe src="./img.html" frameborder="0" height="125"></iframe>
+            </div>
+            <hr>
+            <div id="position">
+                <h3>• Pozicování značek položek v seznamu</h3>
+                <p>Vlastnost <span class="property">list-style-position</span> určuje pozici značení položek seznamu.</p>
+                <p>Tato vlastnost se zejména projevuje při psaní bodů v textu, kdy při použití <span class="property">inside</span> je značení mezi textem a při použití <span class="property">outside</span> mimo text.</p>
+                <p>Jako výchozí nastavení této vlastnosti je <span class="property">outside</span>.</p>
+                <xmp>ul {
+    list-style-position: inside;
+}</xmp>
+                <iframe src="./pos.html" frameborder="0" height="400"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
