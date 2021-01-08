@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        var modal = document.getElementsBy("modal")
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        console.log(modal)
+        function btnOnClick() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <title>Třídní Rozvrh - 2.B | SSPŠ</title>
+</head>
+
+<body>
+    <table class="rozvrh">
+        <thead>
+            <tr>
+                <td colspan="11" class="nadpis">Třídní Rozvrh - 2.B | SSPŠ</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="item invert"></td>
+                <td class="item invert">
+                    <h4>1</h4>
+                    <cas>8:00 - 8:45</cas>
+                </td>
+                <td class="item invert">
+                    <h4>2</h4>
+                    <cas>8:55 - 9:40</cas>
+                </td>
+                <td class="item invert">
+                    <h4>3</h4>
+                    <cas>10:00 - 10:45</cas>
+                </td>
+                <td class="item invert">
+                    <h4>4</h4>
+                    <cas>10:55 - 11:40</cas>
+                </td>
+                <td class="item invert">
+                    <h4>5</h4>
+                    <cas>11:50 - 12:35</cas>
+                </td>
+                <td class="item invert">
+                    <h4>6</h4>
+                    <cas>12:45 - 13:30</cas>
+                </td>
+                <td class="item invert">
+                    <h4>7</h4>
+                    <cas>13:40 - 14:25</cas>
+                </td>
+                <td class="item invert">
+                    <h4>8</h4>
+                    <cas>14:35 - 15:20</cas>
+                </td>
+                <td class="item invert">
+                    <h4>9</h4>
+                    <cas>15:30 - 16:15</cas>
+                </td>
+                <td class="item invert">
+                    <h4>10</h4>
+                    <cas>16:20 - 17:05</cas>
+                </td>
+            </tr>
+            <tr>
+                <td class="item invert side">
+                    <h4>PO</h4>
+                </td>
+                <td class="item">
+                    <h4>ONA</h4>Vt
+                </td>
+                <td class="item">
+                    <h4>MAT</h4>Ta
+                </td>
+                <td class="item">
+                    <h4>DEJ</h4>Ka
+                </td>
+                <td class="item">
+                    <h4>FYZ</h4>Ko
+                </td>
+                <td class="item">
+                    <h4>ANG</h4>Kg
+                </td>
+                <td class="item">
+                    <h4>HAR</h4>Lo
+                </td>
+                <td class="item"></td>
+                <td class="item" colspan="2">
+                    <h4>HAC</h4>Lo
+                </td>
+                <td class="item"></td>
+            </tr>
+            <tr>
+                <td class="item invert side">
+                    <h4>ÚT</h4>
+                </td>
+                <td class="item" colspan="3">
+                    <h4>GRS</h4>Za
+                </td>
+                <td class="item">
+                    <h4>ANG</h4>Kg
+                </td>
+                <td class="item" colspan="2">
+                    <h4>PVA</h4>Kf
+                </td>
+                <td class="item"></td>
+                <td class="item"></td>
+                <td class="item"></td>
+                <td class="item"></td>
+            </tr>
+            <tr>
+                <td class="item invert side">
+                    <h4>ST</h4>
+                </td>
+                <td class="item">
+                    <h4>MAT</h4>Ta
+                </td>
+                <td class="item">
+                    <h4>CJL</h4>Vt
+                </td>
+                <td class="item" colspan="2">
+                    <h4>PDV</h4>Gr
+                </td>
+                <td class="item" colspan="2">
+                    <h4>PSI</h4>Kk
+                </td>
+                <td class="item"></td>
+                <td class="item" colspan="2">
+                    <h4>OSE</h4>Ja
+                </td>
+                <td class="item"></td>
+
+            </tr>
+            <tr>
+                <td class="item invert side">
+                    <h4>ČT</h4>
+                </td>
+                <td class="item">
+                    <h4>CJL</h4>Vt
+                </td>
+                <td class="item">
+                    <h4>FYZ</h4>Ko
+                </td>
+                <td class="item" colspan="2">
+                    <h4>PCV</h4>Zi
+                </td>
+                <td class="item" colspan="2">
+                    <h4>TEV</h4>Sp
+                </td>
+                <td class="item">
+                    <h4>MAT</h4>Ta
+                </td>
+                <td class="item"></td>
+                <td class="item"></td>
+                <td class="item"></td>
+
+            </tr>
+            <tr>
+                <td class="item invert side">
+                    <h4>PÁ</h4>
+                </td>
+                <td class="item" colspan="2">
+                    <h4>WBA</h4>Re
+                </td>
+                <td class="item">
+                    <h4>HAR</h4>Lo
+                </td>
+                <td class="item">
+                    <h4>ANG</h4>Kg
+                </td>
+                <td class="item">
+                    <h4>CJL</h4>Vt
+                </td>
+                <td class="item">
+                    <h4>MAT</h4>Ta
+                </td>
+                <td class="item"></td>
+                <td class="item"></td>
+                <td class="item"></td>
+                <td class="item"></td>
+
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

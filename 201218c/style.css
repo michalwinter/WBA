@@ -1,0 +1,69 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fa8231;
+    font-family: sans-serif;
+    color: #d1d8e0;
+}
+
+.nadpis {
+    text-align: center;
+    padding-bottom: 15px;
+    /*border-bottom: solid 5px #fa8231;*/
+    font-size: 20px;
+}
+
+.rozvrh, .legend {
+    background-color: #4b6584;
+    border-radius: 15px;
+    padding: 15px 15px;
+    border-spacing: 7px;
+}
+
+.item {
+    text-align: center;
+    height: 80px;
+    padding: 0px 5px;
+    border: 2px #fd9644 solid;
+    border-radius: 5px;
+    transition-duration: 200ms;
+    max-width: 80px;
+}
+
+.item:not(.invert) {
+  width: 80px;
+}
+
+.item cas{
+  font-size: 14px;
+  
+}
+
+.item:hover:not(.invert) {
+    color: #4b6584;
+    background-color: #d1d8e0;
+    cursor: pointer;
+}
+
+.invert {
+    border: none;
+    background-color: #fd9644;
+    color: #4b6584;
+}
+
+.side {
+    padding: 0px 10px;
+}
+
+h4 {
+    font-size: large;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin: 0px 0px;
+    font-weight: bold;
+}
