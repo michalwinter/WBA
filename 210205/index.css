@@ -24,11 +24,14 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.topleft h1{
+    font-size: 1.2em;
+}
 .topright a {
     text-decoration: none;
     text-transform: uppercase;
     margin: 10px;
-    color: #F1F1F1;
+    color: #fc815c;
 }
 .topright a:last-child {
     margin-right: 0;
@@ -50,12 +53,12 @@ body {
 
 /* CONTENT */
 .content {
-    
+    display: flex;
 }
 
 .c-left {
     padding-top: 10px;
-    width: 300px;
+    min-width: 250px;
 }
 .c-left h2 {
     font-size: 1.2em;
@@ -77,6 +80,12 @@ body {
 }
 .linklist a {
     color: #F1F1F1;
+    text-decoration: none;
+}
+.linklist li {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 1px dashed white;
 }
 
 .kt {
@@ -84,4 +93,35 @@ body {
 }
 
 .c-right {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.c-right h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+.c-right h2:not(.c-right h2:first-child) {
+    margin-top: 20px;
+}
+
+
+/* FOOTER */
+.footer hr {
+    border: none;
+    background: #F1F1F1;
+    height: 1px;
+}
+.footer p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* PROMĚNNÉ */
+.shadow {
+    text-shadow: #3333338e 1px 2px;
+}
+.light-red {
+    color: #fc815c;
 }
