@@ -48,11 +48,10 @@ body {
     margin: 10px 0px;
     display: inline-flex;
 }
-.fill-input i {
+.input-icon {
     padding: 10px;
     color: white;
     background-color: #0984e3;
-    height: 100%;
 }
 .fill-input input {
     border: none;
