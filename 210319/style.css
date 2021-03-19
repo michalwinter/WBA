@@ -42,6 +42,7 @@ body {
 
 .fill-input {
     border: 2px solid #0984e3;
+    padding: 0px;
     border-radius: 5px;
     width: 250px;
     max-width: 80%;
@@ -49,9 +50,13 @@ body {
     display: inline-flex;
 }
 .input-icon {
-    padding: 10px;
     color: white;
+    display: flex;
     background-color: #0984e3;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 42px;
 }
 .fill-input input {
     border: none;
