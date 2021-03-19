@@ -22,8 +22,7 @@ body {
 .main {
     max-width: 90vw;
     max-height: 70vh;
-    width: 500px;
-    height: 600px;
+    padding: 40px;
 
     border-radius: 15px;
 
@@ -35,11 +34,19 @@ body {
     justify-content: center;
 }
 
+.main h2 {
+    color: #0984e3;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
 .fill-input {
     border: 2px solid #0984e3;
     border-radius: 5px;
+    width: 250px;
     max-width: 80%;
     margin: 10px 0px;
+    display: inline-flex;
 }
 .fill-input i {
     padding: 10px;
@@ -48,4 +55,43 @@ body {
 }
 .fill-input input {
     border: none;
+    width: 100%;
+    margin-left: 2px;
+}
+
+.checkbox {
+    margin: 5px 0px;
+}
+
+.btn {
+    background-color: #0984e3;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    max-width: 80%;
+    margin: 10px 0px;
+    color: white;
+    padding: 5px;
+    font-size: 1em;
+}
+.btn:hover {
+    transition-duration: 300ms;
+    transform: scale(0.95);
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+hr {
+    background-color: #0984e3;
+    height: 1px;
+    width: 75%;
+}
+
+.main a {
+    color: #0984e3;
+}
+
+.main p {
+    margin: 10px 0px;
 }
