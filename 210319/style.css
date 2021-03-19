@@ -82,6 +82,7 @@ body {
     color: white;
     padding: 5px;
     font-size: 1em;
+    transition-duration: 300ms;
 }
 .btn:hover {
     transition-duration: 300ms;
