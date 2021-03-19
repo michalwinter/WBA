@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href=https://api.cajthaml.eu/upload/reset_595b8cd7ad.css">
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
 <body>
-    <div class="main">
-        
-    </div>
+    <form class="main">
+        <div class="fill-input">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="email" id="email">
+        </div>
+        <div class="fill-input">
+            <i class="fas fa-key"></i>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <input type="checkbox" class="checkbox" name="save" id="save">
+            <label for="save">Remember me for 30 days</label>
+        </div>
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>
