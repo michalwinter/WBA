@@ -3,7 +3,7 @@ html {
     width: 100%;
 }
 
-body, input {
+body, input, select {
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -32,6 +32,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.295);
 }
 
 .main h2 {
@@ -58,7 +60,8 @@ body {
     height: 35px;
     width: 42px;
 }
-.fill-input input {
+.fill-input input,
+.fill-input select {
     border: none;
     width: 100%;
     margin-left: 2px;
@@ -87,16 +90,47 @@ body {
     cursor: pointer;
 }
 
-hr {
-    background-color: #0984e3;
-    height: 1px;
-    width: 75%;
-}
-
 .main a {
     color: #0984e3;
 }
 
 .main p {
     margin: 10px 0px;
+}
+
+.disable-select {
+    user-select: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+}
+
+.acc-type {
+    display: inline-flex;
+    width: 250px;
+    max-width: 80%;
+    margin: 10px 0px;
+}
+
+.type-item {
+    width: 120px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    /*box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.295);*/
+    border: #0984e3 2px solid;
+}
+.type-item:first-of-type {
+    margin-right: 5px;
+}
+.type-item:last-of-type {
+    margin-left: 5px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
