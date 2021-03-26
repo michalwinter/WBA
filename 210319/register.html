@@ -19,37 +19,37 @@
             <label class="type-item cursor-pointer">
                 <i class="fas fa-gamepad"></i>
                 <p>Player</p>
-                <input type="radio" value="player" name="type">
+                <input type="radio" required value="player" name="type">
             </label>
             <label class="type-item cursor-pointer">
                 <i class="fas fa-user"></i>
                 <p>User</p>
-                <input type="radio" value="user" name="type">
+                <input type="radio" required value="user" name="type">
             </label>
         </div>
         <div class="fill-input">
             <div class="input-icon">
                 <i class="fas fa-user"></i>
             </div>
-            <input type="text" placeholder="Username" name="username" id="username">
+            <input required type="text" placeholder="Username" name="username" id="username">
         </div>
         <div class="fill-input">
             <div class="input-icon">
                 <i class="fas fa-envelope"></i>
             </div>
-            <input type="email" placeholder="Email" name="email" id="email">
+            <input required type="email" placeholder="Email" name="email" id="email">
         </div>
         <div class="fill-input">
             <div class="input-icon">
                 <i class="fas fa-key"></i>
             </div>
-            <input type="password" placeholder="Password" name="password" id="password">
+            <input required type="password" placeholder="Password" name="password" id="password">
         </div>
         <div class="fill-input">
             <div class="input-icon">
                 <i class="fas fa-key"></i>
             </div>
-            <input type="password" placeholder="Confirm Password" name="cpassword" id="cpassword">
+            <input required type="password" placeholder="Confirm Password" name="cpassword" id="cpassword">
         </div>
         <div class="checkbox" onClick="showPassword()">
             <input type="checkbox" class="cursor-pointer" name="show" id="show">
@@ -59,7 +59,7 @@
             <div class="input-icon">
                 <i class="fas fa-venus-mars"></i>
             </div>
-            <select name="gender" idplaceholder="Select Gender" id="gender">
+            <select required name="gender" idplaceholder="Select Gender" id="gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
