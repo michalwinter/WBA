@@ -59,7 +59,7 @@
             <div class="input-icon">
                 <i class="fas fa-venus-mars"></i>
             </div>
-            <select required name="gender" idplaceholder="Select Gender" id="gender">
+            <select required name="gender" placeholder="Select Gender" id="gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -68,6 +68,9 @@
         <input type="submit" value="Register" class="btn">
         <p>If you already have an account, <a href="index.html">login</a>!</p>
     </form>
+    <div class="main hidden">
+        <h2>Thank you for registering</h2>
+    </div>
     <script>
         function showPassword() {
             let x1 = document.getElementById("password")
@@ -75,7 +78,7 @@
             if (x1.type == "password") {
                 x1.type = "text"
                 x2.type = "text"
-            } else {
+            } else if (x1.type == "text") {
                 x1.type = "password"
                 x2.type = "password"
             }

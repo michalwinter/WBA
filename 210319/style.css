@@ -11,6 +11,10 @@ input:focus, textarea:focus, select:focus{
     outline: none;
 }
 
+.hidden {
+    display: none !important;
+}
+
 body {
     height: 100%;
     display: flex;
