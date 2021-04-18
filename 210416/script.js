@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', async (event) => {
+window.addEventListener('DOMContentLoaded', (event) => {
     let leftQBar = document.getElementById('leftQBar')
 
     let questions = [
@@ -42,15 +42,15 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     let QBarList = []
     for (let i = 0; i < questions.length; i++) {
         let q = questions[i];
-        QBarList.push(`<div class="qbar-item q-item ${i === 0 ? 'qitem-active' : ''}">${q.id}</div>`)
+        QBarList.push(`<div id="q${q.id}" class="qbar-item q-item ${i === 0 ? 'qitem-active' : ''}">${q.id}</div>`)
     }
-    leftQBar.innerHTML = await QBarList.join('\n')
-    await sizeCheck()
+    leftQBar.innerHTML = QBarList.join('\n')
+    sizeCheck()
 
     let selectedQuestion = 1;
 
-    async function changeQuestion(to) {
-        let QButtons = await document.getElementsByClassName('q-item')
+    function changeQuestion(to) {
+        let QButtons = document.getElementsByClassName('q-item')
         if (selectedQuestion === to) return
         selectedQuestion = to;
         for (let i = 0; i < QButtons.length; i++) {
@@ -58,15 +58,46 @@ window.addEventListener('DOMContentLoaded', async (event) => {
             element.classList.remove("qitem-active")
             if (parseInt(element.innerHTML) === to) element.classList.add('qitem-active')
         }
+        generateContent()
+    }
+
+    function generateContent() {
+        let question = document.getElementById('question')
+        let answeres = document.getElementById('answers')
+        let q = questions.find(obj => { return obj.id === selectedQuestion })
+        question.innerHTML = q.q
+        let generateAnswers = []
+        for (let i = 0; i < q.options.length; i++) {
+            const o = q.options[i];
+            generateAnswers.push(`<div id="o${i + 1}" class="option ${q.answered && i + 1 === q.answered ? 'answered-option' : ''}">${o}</div>`)
+        }
+        answeres.innerHTML = generateAnswers.join("")
+        let options = document.getElementsByClassName('option')
+        for (let i = 0; i < options.length; i++) {
+            const option = options[i];
+            option.addEventListener('click', (event) => {
+                optionClick(event.target.innerHTML)
+            })
+        }
+    }
+
+    function optionClick(optionText) {
+        let allOptions = document.getElementsByClassName('option')
+        for (let i = 0; i < allOptions.length; i++) {
+            const option = allOptions[i];
+            if (option.innerHTML === optionText) option.classList.add('selected-option')
+            else option.classList.remove('selected-option')
+        }
     }
 
 
-    let qButtons = await document.getElementsByClassName('q-item')
+    let qButtons = document.getElementsByClassName('q-item')
     for (var i = 0; i < qButtons.length; i++) {
-        qButtons[i].addEventListener('click', async (event) => {
+        qButtons[i].addEventListener('click', (event) => {
             changeQuestion(parseInt(event.target.innerHTML))
         });
     }
+    generateContent()
 
     let prevQ = document.getElementById('prev-q')
     prevQ.addEventListener('click', (event) => {
@@ -90,6 +121,19 @@ window.addEventListener('DOMContentLoaded', async (event) => {
             changeQuestion(selectedQuestion + 1)
     })
 
+    let qSubmit = document.getElementById('submitQuestion')
+    qSubmit.addEventListener('click', (event) => {
+        let selectedO = document.getElementsByClassName('selected-option')[0]
+        if (!selectedO) return
+        let qIndex = questions.findIndex(q => q.id === selectedQuestion)
+        questions[qIndex].answered = parseInt(selectedO.id[1])
+        document.getElementById(`q${selectedQuestion}`).classList.add('qitem-answered')
+        if (selectedQuestion < qButtons.length)
+            changeQuestion(selectedQuestion + 1)
+    })
+
+    let submit = document.getElementById('submit')
+    submit.addEventListener('click', submitFunction)
 })
 
 window.addEventListener('resize', sizeCheck)
@@ -97,13 +141,18 @@ window.addEventListener('resize', sizeCheck)
 function sizeCheck() {
     let rightQBar = document.getElementById('rightQBar')
     let bottomBar = document.getElementById('bottomBar')
+    let main = document.getElementById('main')
     let qButtonsWidth = document.getElementById('leftQBar').offsetWidth
     let limit = qButtonsWidth + 34 + 393 + 34 + 34
     if (innerWidth > limit) {
-        rightQBar.classList.remove('hidden')
         bottomBar.classList.add('hidden')
+        rightQBar.classList.remove('hidden')
+        main.classList.add('main-pc')
+        main.classList.remove('main-mobile')
     } else {
         rightQBar.classList.add('hidden')
         bottomBar.classList.remove('hidden')
+        main.classList.add('main-mobile')
+        main.classList.remove('main-pc')
     }
 }
