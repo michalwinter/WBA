@@ -88,9 +88,13 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         if (selectedQuestion < qButtons.length)
             changeQuestion(selectedQuestion + 1)
     })
+
+    sizeCheck()
 })
 
-window.addEventListener('resize', async () => {
+window.addEventListener('resize', sizeCheck)
+
+function sizeCheck() {
     let rightQBar = document.getElementById('rightQBar')
     let bottomBar = document.getElementById('bottomBar')
     let qButtonsWidth = document.getElementById('leftQBar').offsetWidth
@@ -102,4 +106,4 @@ window.addEventListener('resize', async () => {
         rightQBar.classList.add('hidden')
         bottomBar.classList.remove('hidden')
     }
-})
+}
