@@ -133,7 +133,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
 
     let submit = document.getElementById('submit')
-    submit.addEventListener('click', submitFunction)
 })
 
 window.addEventListener('resize', sizeCheck)
