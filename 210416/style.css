@@ -1,0 +1,132 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 600 !important;
+    background: #D1D8E0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.header {
+    width: calc(100% - 68px);
+    height: 85px;
+    background: #F1F1F1;
+    box-shadow: 0px 7px 30px -10px rgba(150, 170, 180, 0.5);
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 34px;
+}
+.header h1 {
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: 700;
+}
+.header h2 {
+    font-size: 22px;
+    line-height: 24px;
+}
+
+/* QUESTION BAR */
+.question-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 34px;
+}
+.bar-left, .bar-right {
+    display: inline-flex;
+    align-items: center;
+}
+.bar-left {
+    overflow-x: auto;
+    scrollbar-color: #45AAF2;
+}
+.qbar-item {
+    width: 65px;
+    min-width: 65px;
+    height: 65px;
+    box-shadow: 0 7px 30px -2px rgba(150,170,180,0.5);
+    border-radius: 10px;
+
+    font-size: 24px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 17px;
+    transition-duration: 150ms;
+}
+.qbar-item:hover {
+    transform: scale(0.95);
+    transition-duration: 150ms;
+}
+.q-item {
+    background: #F1F1F1;
+    color: #45AAF2;
+}
+.qbar-item:first-of-type {
+    margin-left: 0px !important;
+}
+.qbar-item:last-of-type {
+    margin-right: 0px !important;
+}
+.qitem-active {
+    background: #45AAF2 !important;
+    color: #F1F1F1 !important;
+}
+.qbar-submit {
+    width: 195px;
+    background: #FC5C65;
+    color: #F1F1F1;
+}
+
+/* MAIN */
+.main {
+    flex-grow: 1;
+    height: 500px;
+    margin: 0px 34px 34px 34px;
+    background: #F1F1F1;
+    box-shadow: 0 7px 30px -2px rgba(150,170,180,0.5);
+    border-radius: 25px;
+}
+
+/* BOTTOM BAR */
+
+.mobile-buttons {
+    display: grid;
+    grid-template-columns:  2fr 1fr 1fr ;
+    grid-gap: 17px;
+    justify-items: center;
+    margin: 0px 34px 34px 34px;
+}
+
+.bot-item, .bot-submit {
+    height: 65px;
+    width: 100%;
+    box-shadow: 0 7px 30px -2px rgba(150,170,180,0.5);
+    border-radius: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bot-item {
+    background: #45AAF2 !important;
+    color: #F1F1F1 !important;
+}
+.bot-submit {
+    background: #FC5C65;
+    color: #F1F1F1;
+}
+
+.hidden {
+    display: none;
+}
