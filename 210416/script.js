@@ -45,6 +45,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         QBarList.push(`<div class="qbar-item q-item ${i === 0 ? 'qitem-active' : ''}">${q.id}</div>`)
     }
     leftQBar.innerHTML = await QBarList.join('\n')
+    await sizeCheck()
 
     let selectedQuestion = 1;
 
@@ -89,7 +90,6 @@ window.addEventListener('DOMContentLoaded', async (event) => {
             changeQuestion(selectedQuestion + 1)
     })
 
-    sizeCheck()
 })
 
 window.addEventListener('resize', sizeCheck)
