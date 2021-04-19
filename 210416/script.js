@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let generateAnswers = []
         for (let i = 0; i < q.options.length; i++) {
             const o = q.options[i];
-            generateAnswers.push(`<div id="o${i + 1}" class="option ${q.answered && i + 1 === q.answered ? 'answered-option' : ''}">${o}</div>`)
+            generateAnswers.push(`<div id="o${i}" class="option ${i === q.answered ? 'selected-option' : ''}">${o}</div>`)
         }
         answeres.innerHTML = generateAnswers.join("")
         let options = document.getElementsByClassName('option')
@@ -85,7 +85,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let allOptions = document.getElementsByClassName('option')
         for (let i = 0; i < allOptions.length; i++) {
             const option = allOptions[i];
-            if (option.innerHTML === optionText) option.classList.add('selected-option')
+            if (option.innerHTML === optionText) {
+                option.classList.add('selected-option')
+                let qIndex = questions.findIndex(q => q.id === selectedQuestion)
+                questions[qIndex].answered = parseInt(option.id[1])
+                console.log(questions);
+                document.getElementById(`q${selectedQuestion}`).classList.add('qitem-answered')
+            }
             else option.classList.remove('selected-option')
         }
     }
@@ -121,19 +127,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             changeQuestion(selectedQuestion + 1)
     })
 
-    let qSubmit = document.getElementById('submitQuestion')
-    qSubmit.addEventListener('click', (event) => {
-        let selectedO = document.getElementsByClassName('selected-option')[0]
-        if (!selectedO) return
-        let qIndex = questions.findIndex(q => q.id === selectedQuestion)
-        questions[qIndex].answered = parseInt(selectedO.id[1])
-        document.getElementById(`q${selectedQuestion}`).classList.add('qitem-answered')
-        if (selectedQuestion < qButtons.length)
-            changeQuestion(selectedQuestion + 1)
-    })
-
     let submit = document.getElementById('submit')
     submit.addEventListener('click', submitFunction)
+    let bsubmit = document.getElementById('b-submit')
+    bsubmit.addEventListener('click', submitFunction)
+
+    function submitFunction() {
+
+    }
 })
 
 window.addEventListener('resize', sizeCheck)
@@ -141,6 +142,8 @@ window.addEventListener('resize', sizeCheck)
 function sizeCheck() {
     let rightQBar = document.getElementById('rightQBar')
     let bottomBar = document.getElementById('bottomBar')
+    let header = document.getElementById('header')
+    let content = document.getElementById('content')
     let main = document.getElementById('main')
     let qButtonsWidth = document.getElementById('leftQBar').offsetWidth
     let limit = qButtonsWidth + 34 + 393 + 34 + 34
@@ -149,10 +152,18 @@ function sizeCheck() {
         rightQBar.classList.remove('hidden')
         main.classList.add('main-pc')
         main.classList.remove('main-mobile')
+        content.classList.add('pc-content-p')
+        content.classList.remove('mobile-content-p')
+        header.classList.add('pc-header-p')
+        header.classList.remove('mobile-header-p')
     } else {
         rightQBar.classList.add('hidden')
         bottomBar.classList.remove('hidden')
         main.classList.add('main-mobile')
         main.classList.remove('main-pc')
+        content.classList.add('mobile-content-p')
+        content.classList.remove('pc-content-p')
+        header.classList.add('mobile-header-p')
+        header.classList.remove('pc-header-p')
     }
 }
