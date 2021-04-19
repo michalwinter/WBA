@@ -192,6 +192,7 @@ body {
     grid-template-columns:  2fr 1fr 1fr ;
     grid-gap: 17px;
     justify-items: center;
+    margin: 17px;
 }
 
 .bot-item, .bot-submit {

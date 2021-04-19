@@ -59,7 +59,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (parseInt(element.innerHTML) === to) {
                 element.classList.add('qitem-active')
                 leftQBar = document.getElementById('leftQBar')
-                leftQBar.scrollLeft = element.offsetLeft
+
+                let offsetWidth = element.offsetLeft
+                if (offsetWidth > (window.innerWidth - 34))
+                    leftQBar.scrollLeft -= 50
+                if (element.offsetLeft < 65) offsetWidth = 0
+                console.log(offsetWidth, window.innerWidth - 34);
+
+                leftQBar.scrollLeft = offsetWidth
             }
         }
         generateContent()
