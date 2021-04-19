@@ -56,7 +56,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         for (let i = 0; i < QButtons.length; i++) {
             const element = QButtons[i];
             element.classList.remove("qitem-active")
-            if (parseInt(element.innerHTML) === to) element.classList.add('qitem-active')
+            if (parseInt(element.innerHTML) === to) {
+                element.classList.add('qitem-active')
+                leftQBar = document.getElementById('leftQBar')
+                leftQBar.scrollLeft = element.offsetLeft
+            }
         }
         generateContent()
     }
