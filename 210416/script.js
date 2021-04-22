@@ -1,10 +1,11 @@
+let results = false;
 window.addEventListener('DOMContentLoaded', (event) => {
     let leftQBar = document.getElementById('leftQBar')
 
     let questions = [
         {
             id: 1,
-            q: "Co je hlavní město Španělska",
+            q: "Co je hlavní město Španělska?",
             answer: 0,
             options: ["Madrid", "Brno", "New York", "Vietnam"],
             answered: null
@@ -36,6 +37,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
             answer: 3,
             options: ["1989", "2003", "2009", "1997"],
             answered: null
+        },
+        {
+            id: 6,
+            q: "Od kaď pochází Coronavirus (Covid-19)",
+            answer: 2,
+            options: ["Bohnice", "Strakovská Akademie", "Provincie Jün-nan v Číně", "Donald Trump"],
+            answered: null
+        },
+        {
+            id: 7,
+            q: "Je v Coca-Cola Zero cukr?",
+            answer: 1,
+            options: ["Ano", "Ne"],
+            answered: null
+        },
+        {
+            id: 8,
+            q: "Grand Slam je turnaj jakého sportu?",
+            answer: 1,
+            options: ["Ping-Pong", "Tennis", "Hokej", "Americký Fotbal"],
+            answered: null
+        },
+        {
+            id: 9,
+            q: "Nejvýdělečnější film Marvel Universe",
+            answer: 0,
+            options: ["Avengers: End Game", "Doctor Strange", "Spiderman: Daleko od Domova", "Ant-Man"],
+            answered: null
+        },
+        {
+            id: 10,
+            q: "Odkud pochází automobilová značka Dodge?",
+            answer: 3,
+            options: ["Česká Repulika", "Německo", "Čína", "Spojené Státy Americký"],
+            answered: null
         }
     ]
 
@@ -64,7 +100,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (offsetWidth > (window.innerWidth - 34))
                     leftQBar.scrollLeft -= 50
                 if (element.offsetLeft < 65) offsetWidth = 0
-                console.log(offsetWidth, window.innerWidth - 34);
 
                 leftQBar.scrollLeft = offsetWidth
             }
@@ -100,7 +135,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 option.classList.add('selected-option')
                 let qIndex = questions.findIndex(q => q.id === selectedQuestion)
                 questions[qIndex].answered = parseInt(option.id[1])
-                console.log(questions);
                 document.getElementById(`q${selectedQuestion}`).classList.add('qitem-answered')
             }
             else option.classList.remove('selected-option')
@@ -144,7 +178,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     bsubmit.addEventListener('click', submitFunction)
 
     function submitFunction() {
+        let confirm = window.confirm('Jste si jisti že jste odpověděli na všechny otázky?')
+        if (!confirm) return
+        let qTab = document.getElementById('qTab')
+        let answTab = document.getElementById('answTab')
+        qTab.classList.add('hidden')
+        answTab.classList.remove('hidden')
+        let resultsCode = []
+        questions.forEach(q => {
 
+        })
     }
 })
 
@@ -156,6 +199,7 @@ function sizeCheck() {
     let header = document.getElementById('header')
     let content = document.getElementById('content')
     let main = document.getElementById('main')
+    let results = document.getElementById('answTab')
     let qButtonsWidth = document.getElementById('leftQBar').offsetWidth
     let limit = qButtonsWidth + 34 + 393 + 34 + 34
     if (innerWidth > limit) {
@@ -167,6 +211,8 @@ function sizeCheck() {
         content.classList.remove('mobile-content-p')
         header.classList.add('pc-header-p')
         header.classList.remove('mobile-header-p')
+        results.classList.add(['pc-content-p'])
+        results.classList.remove('mobile-content-p')
     } else {
         rightQBar.classList.add('hidden')
         bottomBar.classList.remove('hidden')
@@ -176,5 +222,7 @@ function sizeCheck() {
         content.classList.remove('pc-content-p')
         header.classList.add('mobile-header-p')
         header.classList.remove('pc-header-p')
+        results.classList.add('mobile-header-p')
+        results.classList.remove('pc-content-p')
     }
 }
