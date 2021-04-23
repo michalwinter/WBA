@@ -31,7 +31,7 @@ document.questions = [
         id: 5,
         q: "V jakém roce vstoupila Česká Republika do NATO?",
         answer: 3,
-        options: ["1989", "2003", "2009", "1997"],
+        options: ["1989", "2003", "2009", "1999"],
         answered: null
     },
     {
