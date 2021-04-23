@@ -252,6 +252,15 @@ body {
     text-decoration: underline;
     text-decoration-thickness: 2px;
 }
+.res-overview {
+    background-color: #f7b731;
+    border: 2px solid #fed330;
+    font-size: 18px;
+}
+.res-over-points {
+    font-size: 24px;
+    font-weight: 700;
+}
 .res-i-correct {
     background: #7de0af;
     border: 2px solid #26de81;

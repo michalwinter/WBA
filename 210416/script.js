@@ -30,6 +30,7 @@ function generateQuestions() {
 
     leftQBar.innerHTML = html.join('\n')
     mobileLimit = leftQBar.offsetWidth + (3 * 34) + 393
+    leftQBar.scrollLeft = 0
 }
 
 function changeQuestion(to) {
@@ -152,6 +153,7 @@ function submitFunction() {
     classEdit(bottomBar, undefined, 'hidden')
     resultsTab = true;
     let resultsCode = []
+    resultsCode.push(generatePoints())
     questions.forEach(q => {
         resultsCode.push(generateQResult(q))
     })
@@ -193,6 +195,21 @@ function sizeCheck() {
 function classEdit(element, remove, add) {
     if (remove) element.classList.remove(remove)
     if (add) element.classList.add(add)
+}
+
+function generatePoints() {
+    let correct = 0
+    questions.forEach(q => {
+        if (q.answer === q.answered) correct++
+    })
+    let generateHTML = []
+    generateHTML.push(
+        '<div class="res-item res-overview">',
+        `Hodnocení: <span class="res-over-points">${correct}/${questions.length}</span>`,
+        ` - Úspěšnost: <span class="res-over-points">${Math.round(((correct / questions.length) * 100).toFixed(3))}%</span>`,
+        '</div>'
+    )
+    return generateHTML.join('')
 }
 
 function generateQResult(q) {
