@@ -135,6 +135,7 @@ body {
 }
 .main-pc {
     margin: 0px 34px;
+    margin-bottom: 34px;
 }
 .main-mobile {
     overflow-y: auto;
