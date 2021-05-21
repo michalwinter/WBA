@@ -1,0 +1,102 @@
+/* štyl štyl!! */
+
+:root {
+    --zelena: #44bd32;
+    --bila: #F5F6FA;
+    --fialova: #9C88FF;
+}
+
+body,html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: 'Open Sans', sans-serif !important;                                            
+}
+
+/* EASY */
+.buttonHover1 {
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+.buttonHover1:hover {
+    transition-duration: 200ms;
+    transform: scale(0.96);
+}
+
+.inputScale1 {
+    transition-duration: 200ms;
+}
+
+.inputScale1:focus {
+    transition-duration: 200ms;
+    width: 1000%;
+}
+
+.nav {
+    --padding: 14px;
+
+    height: 75px;
+    width: calc(100% - (var(--padding) * 2 ));
+    padding: 0px var(--padding);
+
+    background-color: #9C88FF;
+    color: #F5F6FA;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head-left {
+    font-weight: 600;
+}
+
+.head-utils,
+.utils-buttons,
+.utils-basket {
+    display: inline-flex;
+    align-items: center;
+}
+
+.search {
+    background: #F5F6FA50;
+    border-radius: 4px;
+    margin-right: var(--padding);
+    border: none;
+    padding: 7px;
+    transition-duration: 200ms;
+    width: 150px;
+    color: var(--zelena);
+    font-weight: 800;
+}
+.search:focus {
+    transition-duration: 200ms;
+    width: 400px;
+}
+
+
+.utils-basket {
+    background: #F5F6FA20;
+    padding: 7px;
+    border-radius: 4px;
+}
+.utils-basket > i {
+    margin-right: 7px;
+    font-size: 26px;
+}
+.basket-prize {
+    font-weight: 700;
+}
+.currency{
+    padding: 7px;
+    margin-right: 14px;
+    font-weight: 700;
+    background-color:#F5F6FA20;
+    color: #F5F6FA;
+    border: none;
+    border-radius: 4px;
+}
+.currency > option {
+    color: black;
+}
