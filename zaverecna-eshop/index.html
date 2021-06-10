@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://api.cajthaml.eu/upload/reset_595b8cd7ad.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="./pics/logo.png" />
+    <title>e-DaYuMi</title>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="head-left">
+            <!-- LOGO -->
+            <img src="./pics/logo.png" alt="">
+            <a href="#" style="margin-left: 14px;">DaYuMi</a>
+        </div>
+        <div class="head-utils">
+            <!--<div class="search inputScale1">
+                <i class="fas fa-search"></i>
+                <input class="s-input" type="text" name="search">
+            </div>-->
+            <input class="search" type="text" id="search">
+            <div class="utils-buttons">
+                <select class="currency">
+                    <option value="Kč" selected>CZK</option>
+                    <option value="€">EUR</option>
+                </select>
+                <div class="utils-basket" id="navBasket">
+                    <i class="fas fa-shopping-basket" id="basketIcon" data-count="0"></i>
+                    <div class="basket-price" id="basketPrice"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main id="mainItems">
+        <div class="card-container" id="card-c">
+        </div>
+
+
+    </main>
+
+    <main id="mainBasket" class="hidden">
+        <div class="basket-back buttonHover1" id="basket-back"><i class="fas fa-arrow-left"></i> Zpět k nakupování</div>
+        <div class="basket-content">
+            <div class="basket-info">
+                <div id="basketInfoTotal">Počet Položek: 0</div>
+                <a href="#" id="basketDelete" class="buttonHover1">Vymazat Košík</a>
+            </div>
+            <div id="basketItems">
+
+            </div>
+
+        </div>
+        <div class="basket-devider"></div>
+        <div class="basket-submit">
+            <form action="#" onsubmit="alert('Úspěšně jste si objednali na eshopu DaYuMi!')">
+                <div>
+                    <div class="basket-title">Platba</div>
+                    <div class="basket-address">
+                        <div class="basket-address-city">
+                            <input type="text" name="name" placeholder="Jméno" class="basket-address-input"
+                                style="flex-grow: 1;">
+                            <input type="text" name="surname" placeholder="Přijmené" class="basket-address-input"
+                                style="flex-grow: 1;">
+                        </div>
+                        <input type="email" name="address" placeholder="Emailová Adresa" class="basket-address-input">
+                    </div>
+                    <div class="basket-submit-devider"></div>
+                    <div class="basket-payment">
+                        <label for="payment-card" class="payment-item">
+                            <div>
+                                <input type="radio" name="payment" id="payment-card">
+                                Kreditní karta
+                            </div>
+                            <img src="https://img.icons8.com/fluent/32/000000/bank-card-back-side.png" />
+                        </label>
+                        <label for="payment-cash" class="payment-item">
+                            <div>
+                                <input type="radio" name="payment" id="payment-cash">
+                                Na dobírku
+                            </div>
+                            <img src="https://img.icons8.com/fluent/32/000000/cash-.png" />
+                        </label>
+                    </div>
+                    <div class="basket-submit-devider"></div>
+                    <div class="basket-address">
+                        <input type="text" name="address" placeholder="Ulice a Číslo popisné"
+                            class="basket-address-input">
+                        <div class="basket-address-city">
+                            <input type="text" name="city" placeholder="Město" style="flex-grow: 5;"
+                                class="basket-address-input">
+                            <input type="text" name="postcode" placeholder="PSČ" style="flex-grow: 1;"
+                                class="basket-address-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-bottom">
+                    <div id="basketTotalPrice"></div>
+                    <input type="submit" class="buttonHover1" value="Koupit">
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="./products.js"></script>
+    <script src="./cart.js"></script>
+
+    <script>
+        let selectedCurrency = "Kč";
+        let basketTotal = 0;
+        let basketShow = false;
+        let currency = document.getElementsByClassName("currency")[0];
+        currency.addEventListener("change", (el) => {
+            selectedCurrency = el.target.value;
+            updateBasket();
+            nasypejToTam();
+            generateBasket();
+        })
+
+        updateBasket();
+
+        let navBasket = document.getElementById('navBasket');
+        navBasket.addEventListener('click', () => {
+            let mainBasket = document.getElementById('mainBasket');
+            let mainItems = document.getElementById('mainItems');
+            if (mainBasket.classList.contains("hidden")) {
+                // Zobrazení Košíku
+                mainBasket.classList.remove("hidden")
+                mainItems.classList.add("hidden");
+                generateBasket()
+            } else if (mainItems.classList.contains("hidden")) {
+                //Schování košíku
+                mainBasket.classList.add("hidden");
+                mainItems.classList.remove("hidden");
+            }
+        })
+
+        let navBack = document.getElementById('basket-back');
+        navBack.addEventListener('click', () => {
+            mainBasket.classList.add("hidden");
+            mainItems.classList.remove("hidden");
+        })
+
+        function updateBasket() {
+            let basketPrice = document.getElementById('basketPrice');
+            let basketIcon = document.getElementById("basketIcon")
+
+            let pcs = 0
+            let price = 0
+            cart.forEach(element => {
+                pcs += parseInt(element.pcs)
+                price += data[element.product_i].price[selectedCurrency] * element.pcs
+            });
+
+            basketTotal = price
+
+            basketPrice.innerHTML = `${basketTotal} ${selectedCurrency}`;
+            basketIcon.dataset.count = pcs
+        }
+
+        function cartTotalPcs() {
+            let pcs = 0
+            cart.forEach(element => {
+                pcs += parseInt(element.pcs)
+            });
+            return pcs
+        }
+
+        function cartTotalPrice() {
+            let pcs = 0
+            let price = 0
+            cart.forEach(element => {
+                pcs += element.pcs
+                price += data[element.product_i].price[selectedCurrency] * element.pcs
+            });
+            return price
+        }
+
+        function kuk(pos, ele) {
+            //alert("kuk!! "+pos)
+            let active = document.getElementsByClassName("card-active")
+            for (let y = 0; y < active.length; y++) {
+                active.item(y).setAttribute("class", "card")
+            }
+            ele.setAttribute("class", "card-active")
+        }
+
+        function unkuk(ele) {
+            ele.setAttribute("class", "card")
+        }
+
+
+        let card_width = getComputedStyle(document.documentElement).getPropertyValue("--card-width");
+        let card_margin = getComputedStyle(document.documentElement).getPropertyValue("--card-margin");
+        let card_padding = getComputedStyle(document.documentElement).getPropertyValue("--card-padding");
+        let c_holder = document.getElementById('card-c')
+
+
+        window.addEventListener("load", () => {
+            nasypejToTam()
+        })
+
+        window.addEventListener("resize", () => {
+            nasypejToTam()
+        })
+
+        function nasypejToTam() {
+            console.log("Sypu!!")
+
+            c_holder.innerHTML = null;
+
+            let cardWidth = (parseInt(card_width) + parseInt(card_margin) * 2 + parseInt(card_padding) * 2)
+            let CardsInRow = Math.floor(window.innerWidth * 0.95 / cardWidth)
+            let CardRows = Math.round(data.length / CardsInRow)
+
+            c_holder.setAttribute("style", `width:${cardWidth * CardsInRow}px`)
+
+            console.log("Card-Width: " + (parseInt(card_width) + parseInt(card_margin) * 2 + parseInt(card_padding) * 2))
+            console.log("Cards in row: " + CardsInRow)
+            console.log("Card rows: " + CardRows)
+
+            let o = ""
+            let pos = 0
+
+            for (let a = 1; a <= CardRows; a++) {
+
+                o += "<div class=\"card-row\">"
+
+                for (let b = 1; b <= CardsInRow; b++) {
+
+                    if (data[pos]) {
+                        o += '<div class="card" onmouseover="kuk(' + pos + ', this)" onmouseout="unkuk(this)">'
+                        o += '<div class="card-right">'
+                        o += '<div class="card-image">'
+                        o += `<img src="${data[pos].img_url}" alt="">`
+                        o += '</div>'
+                        o += `<div class="card-title">${data[pos].title}</div>`
+                        o += '</div>'
+                        o += '<div class="card-left descarrive"> <div>'
+                        o += `<div class="card-price">${data[pos].price[selectedCurrency]} ${selectedCurrency}</div>`
+                        o += '<input type="number" id="num-' + pos + '" placeholder="písis" value="1" min="1" max="99">'
+                        o += `<div class="card-add buttonHover1" onclick="addToCart(${pos})"><i class="fas fa-shopping-basket"></i> Přidat</div>`
+                        o += '</div></div>'
+                        o += '</div>'
+                        pos++
+                    } else {
+                        o += "<div class=\"dummy\"></div>"
+                    }
+
+                }
+
+                o += "</div>"
+            }
+
+            c_holder.innerHTML = o
+        }
+
+
+        function addToCart(val) {
+            console.log("adding to cart! " + val)
+
+            let pcs = document.getElementById(`num-` + val)
+
+            let item = cart.find(element => element.product_i == val)
+            if (!item) {
+                cart.push({
+                    "product_i": val,
+                    "pcs": parseInt(pcs.value)
+                })
+            } else {
+                item.pcs += parseInt(pcs.value)
+            }
+
+            updateBasket()
+            console.log(cart)
+        }
+
+
+        function generateBasket() {
+            let basketItems = document.getElementById('basketItems');
+            let basketInfoTotal = document.getElementById('basketInfoTotal');
+            let totalBasket = cartTotalPcs()
+            let totalPrice = cartTotalPrice()
+            basketInfoTotal.innerHTML = `Počet Položek: ${totalBasket}`;
+
+            let html = [];
+            if (totalBasket > 0) {
+                cart.forEach(item => {
+                    let product = data[item.product_i]
+                    html.push(`
+                    <div class="basket-item" id="basketItem">
+                        <div class="basket-item-left">
+                            <div class="basket-item-count">×<input type="number" value="${item.pcs}" min="0" onchange="basketChangePcs(this.value,${item.product_i})"></div>
+                            <img width="160px" src="${product.img_url}">
+                            <div class="basket-item-name">${product.title}</div>
+                        </div>
+                        <div class="basket-item-price">${data[item.product_i].price[selectedCurrency] * item.pcs} ${selectedCurrency}</div>
+                        <i class="fas fa-trash basket-item-delete" onclick="basketItemsDelete(${item.product_i})"></i>
+                    </div>
+                    `);
+                })
+            } else {
+                html.push(`<div class="basket-item basket-item-empty" id="basketItem">Žádné položky v košíku</div>`);
+            }
+            basketItems.innerHTML = html.join("\n");
+            basketSubmitGen()
+        }
+
+        function basketChangePcs(val, id) {
+            let item = cart.find(element => element.product_i == id)
+            if (!item) return
+            item.pcs = val
+            updateBasket()
+            generateBasket()
+        }
+
+        let basketDeleteAll = document.getElementById('basketDelete')
+        basketDeleteAll.addEventListener('click', () => {
+            cart = []
+            updateBasket();
+            generateBasket();
+        })
+
+        function basketItemsDelete(id) {
+            let index = cart.findIndex(obj => obj.product_i === id);
+            cart.splice(index, 1);
+            updateBasket();
+            generateBasket();
+        }
+
+        function basketSubmitGen() {
+            let basketTotalPrice = document.getElementById('basketTotalPrice');
+            basketTotalPrice.innerHTML = `<b>Celkem:</b> ${cartTotalPrice()} ${selectedCurrency}`;
+        }
+    </script>
+</body>
+
+</html>
